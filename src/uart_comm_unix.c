@@ -302,6 +302,7 @@ static int uart_config_line(int fd, const struct uart_config *config)
         break;
     case UART_PARITY_INCLUDE:
         options.c_cflag |= IGNPAR;
+        options.c_cflag &= ~ISTRIP;
         break;
     default:
         // Other options not supported
