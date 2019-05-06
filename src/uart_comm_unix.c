@@ -298,7 +298,7 @@ static int uart_config_line(int fd, const struct uart_config *config)
         break;
 #endif
     case UART_PARITY_IGNORE:
-        options.c_iflag |= IGNPAR | ISTRIP;
+        # options.c_iflag |= IGNPAR | ISTRIP;
         break;
     case UART_PARITY_INCLUDE:
 
