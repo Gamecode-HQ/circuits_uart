@@ -300,8 +300,8 @@ static int uart_config_line(int fd, const struct uart_config *config)
     case UART_PARITY_IGNORE:
         options.c_iflag |= IGNPAR | ISTRIP;
         break;
+#ifdef CMSPAR
     case UART_PARITY_INCLUDE:
-
         options.c_cflag |=  CMSPAR;         // Set "stick" parity (either mark or space)
         options.c_cflag &= ~PARODD;         // Select space parity so that only address byte causes error
 
@@ -310,6 +310,7 @@ static int uart_config_line(int fd, const struct uart_config *config)
         options.c_iflag |=  PARMRK;         // Enable in-band marking
         options.c_iflag &= ~IGNPAR;         // Make sure input parity errors are not ignored
         break;
+#endif
     default:
         // Other options not supported
         return -1;
